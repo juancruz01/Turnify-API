@@ -8,7 +8,8 @@ namespace Turnify.API.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    private readonly IUserRepository _userRepository; 
+    private readonly IUserRepository _userRepository;
+
     public UsersController(IUserRepository userRepository)
     {
         _userRepository = userRepository;
@@ -24,7 +25,6 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(User user)
     {
-        // La lógica de negocio básica (como la fecha) idealmente iría en un Servicio,
         user.CreatedAt = DateTime.UtcNow;
 
         await _userRepository.AddAsync(user);
